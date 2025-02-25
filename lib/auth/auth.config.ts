@@ -13,14 +13,14 @@ export default {
             type: "credentials",
             async authorize(credentials) {
                 if (credentials?.login && credentials?.senha){
-                const { login, senha } = credentials;
-                const response = await fetch(`${process.env.API_URL}login`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ login, senha })
-                });
-                const usuario = await response.json();
-                if (usuario && response.ok) return usuario;
+                    const { login, senha } = credentials;
+                    const response = await fetch(`${process.env.API_URL}login`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ login, senha })
+                    });
+                    const usuario = await response.json();
+                    if (usuario && response.ok) return usuario;
                 }
                 return null;
             }
@@ -33,7 +33,6 @@ export default {
         },
         async session({ session, token }) {
             session = token.user as any;
-            console.log(session);
             if (session.access_token) session.usuario = jwtDecode(session.access_token);
             const now = new Date();
             if (session.usuario.exp*1000 < now.getTime()) {
@@ -53,6 +52,7 @@ export default {
 	},
 	pages: {
 		signIn: '/login',
+        error: '/login'
 	},
  
 } satisfies NextAuthConfig;

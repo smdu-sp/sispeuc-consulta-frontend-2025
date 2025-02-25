@@ -2,11 +2,10 @@
 
 import claro from "@/public/martinelli_dia.jpg";
 import escuro from "@/public/martinelli_noite.jpeg";
-import { ModeToggle } from "@/components/toggle-theme";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from 'react';
 
-export default function Imagem() {
+export default function Background() {
     const { theme, systemTheme } = useTheme();
     const tema = theme === "system" ? systemTheme : theme;
     const [mounted, setMounted] = useState(false);
@@ -16,15 +15,12 @@ export default function Imagem() {
     }, []);
     
     if (!mounted) {
-        return <div className="relative hidden bg-muted md:block">
-        </div>
+        return <div className="absolute inset-0 bg-muted h-full w-full object-cover" />
     }
 
-    return <div className="relative hidden bg-muted md:block">
-        <img
+    return <img
             src={tema === "dark" ? escuro.src : claro.src}
             alt="Edíficio Martinelli"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover md:hidden"
         />
-    </div>
 }
