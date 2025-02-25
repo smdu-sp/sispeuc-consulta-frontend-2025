@@ -1,17 +1,9 @@
 "use client"
 
-import {
-  BookOpen,
-  Bot,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react"
-
 import { NavMain } from "./nav-main"
 import { NavUser } from "./nav-user"
 import {
   Sidebar,
-  SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
@@ -21,8 +13,9 @@ import {
 } from "@/components/ui/sidebar"
 import MiniLogo from "./mini-logo"
 import { ComponentProps } from "react"
+import { IMenu } from "../main"
 
-export function AppSidebar({ data, props }: { data: any, props?: ComponentProps<typeof Sidebar>}) {
+export function AppSidebar({ data, props }: { data: { menuUsuario: IMenu[], menuAdmin: IMenu[] }, props?: ComponentProps<typeof Sidebar>}) {
   
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -41,9 +34,9 @@ export function AppSidebar({ data, props }: { data: any, props?: ComponentProps<
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <NavMain items={data.navMain} />
+      <NavMain data={data} />
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

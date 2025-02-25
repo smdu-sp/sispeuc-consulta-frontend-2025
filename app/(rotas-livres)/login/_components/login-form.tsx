@@ -11,7 +11,7 @@ import { z } from "zod"
 import Logo from "./logo"
 import { signIn } from "next-auth/react"
 import { toast } from "sonner"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     login: z.string().min(7, {
@@ -50,6 +50,7 @@ export function LoginForm() {
             //     toast.success('Usuário Logado com sucesso');
             // }
         } catch (e) {
+            console.log(e);
             toast.error("Não foi possível realizar o login.");
         }
     }
@@ -69,7 +70,7 @@ export function LoginForm() {
                                 <FormItem>
                                     <FormLabel>Login</FormLabel>
                                     <FormControl>
-                                        <Input {...field} />
+                                        <Input {...field} className="bg-background" />
                                     </FormControl>
                                     <FormDescription />
                                     <FormMessage />
@@ -85,7 +86,7 @@ export function LoginForm() {
                                 <FormItem>
                                     <FormLabel>Senha</FormLabel>
                                     <FormControl>
-                                        <Input {...field} type="password" />
+                                        <Input {...field} type="password" className="bg-background" />
                                     </FormControl>
                                     <FormDescription />
                                     <FormMessage />

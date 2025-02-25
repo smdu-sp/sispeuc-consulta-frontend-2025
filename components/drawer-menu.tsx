@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronRight, ChevronsUp, Heart, LucideArrowBigUpDash, LucideIcon, X } from "lucide-react"
+import { ChevronRight, ChevronsUp, LucideIcon, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -35,7 +35,7 @@ export function DrawerMenu({
       <DrawerTrigger asChild>
         <Button variant="ghost" className="flex sm:hidden absolute bottom-0 w-full"><ChevronsUp className="scale-150" /></Button>
       </DrawerTrigger>
-      <DrawerContent className="h-5/6">
+      <DrawerContent className="h-5/6 bg-sidebar">
         <DrawerHeader>
             <DrawerTitle className="flex w-full justify-end items-center">
                 <DrawerClose asChild>
@@ -48,7 +48,7 @@ export function DrawerMenu({
             <div className="mx-auto w-full max-w-sm">
                 <div className="p-4 pb-0">
                     <ul className="flex w-full min-w-0 flex-col gap-1">
-                        {items.map((item, index) => (
+                        {items.map((item) => (
                             <Collapsible asChild className="group/collapsible" key={item.title}>
                                 <li className="group/menu-item relative w-full">
                                     <CollapsibleTrigger className="w-full" asChild>
