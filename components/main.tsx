@@ -45,8 +45,9 @@ const menuAdmin: IMenu[] = [
   }
 ]
 
-export default function Main({ children }: { children?: ReactNode}) {
-  return (
+export default function Main({ override = false, children }: { override?: boolean, children?: ReactNode}) {
+
+  return override ? children : (
     <>
       <ModeToggle className="absolute top-4 right-4 z-50" />
       <SidebarProvider>

@@ -73,7 +73,7 @@ export function LoginForm() {
 	return (
 		<Form {...form}>
 			<form
-				className='p-6 md:p-8 dark:bg-muted'
+				className='p-6 md:p-8 dark:bg-muted bg-background'
 				onSubmit={form.handleSubmit(onSubmit)}>
 				<div className='flex flex-col gap-6'>
 					<div className='flex flex-col items-center text-center'>

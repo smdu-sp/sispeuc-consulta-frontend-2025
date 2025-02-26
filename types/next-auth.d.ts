@@ -10,6 +10,7 @@ declare module 'next-auth' {
 			email: string
 			permissao: string
 			status: number,
+			avatar?: string
 			iat: number,
 			exp: number
 		},

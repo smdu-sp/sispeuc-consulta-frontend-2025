@@ -1,3 +1,3 @@
 export default async function Usuários() {
-  return <></>
+  return <>Usuarios</>
 }
