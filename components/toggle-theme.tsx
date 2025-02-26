@@ -15,7 +15,6 @@ import { ComponentProps } from "react"
 
 export function ModeToggle({ ...props }: ComponentProps<"div">) {
   const { setTheme } = useTheme()
-
   return (
     <div {...props}>
       <DropdownMenu>

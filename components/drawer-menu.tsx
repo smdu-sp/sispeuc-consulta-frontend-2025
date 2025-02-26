@@ -14,22 +14,10 @@ import {
 } from "@/components/ui/drawer"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { ScrollArea } from "./ui/scroll-area"
+import { IMenu } from "./main"
+import Link from "./link"
 
-export function DrawerMenu({
-    items,
-}: {
-    items: {
-        title: string
-        url: string
-        icon?: LucideIcon
-        isActive?: boolean
-        items?: {
-        title: string
-        url: string
-        }[]
-    }[]
-}) {
-
+export function DrawerMenu({ data }: { data: { menuUsuario: IMenu[], menuAdmin: IMenu[] } }) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -45,34 +33,68 @@ export function DrawerMenu({
             <DrawerDescription className="hidden">Menu Inferior</DrawerDescription>
         </DrawerHeader>
         <ScrollArea className="h-full pb-32">
-            <div className="mx-auto w-full max-w-sm">
+            <div className="mx-auto w-full px-4">
                 <div className="p-4 pb-0">
                     <ul className="flex w-full min-w-0 flex-col gap-1">
-                        {items.map((item) => (
-                            <Collapsible asChild className="group/collapsible" key={item.title}>
+                    {data.menuUsuario.map((item) => (
+                            item.subItens && item.subItens.length > 0 ? <Collapsible asChild className="group/collapsible" key={item.titulo}>
                                 <li className="group/menu-item relative w-full">
                                     <CollapsibleTrigger className="w-full" asChild>
-                                        <Button variant="ghost">
-                                            {item.icon && <item.icon className="text-primary" />}
-                                            <span className={(item.items && item.items.length > 0) ? "mr-auto" : ""}>{item.title}</span>
-                                            {item.items && item.items.length > 0 && <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />}
+                                        <Button variant="ghost" className="w-full border-0">
+                                            <item.icone />
+                                            <span>{item.titulo}</span>
+                                            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                                         </Button>
                                     </CollapsibleTrigger>
-                                    {item.items && item.items.length > 0 && <CollapsibleContent>
+                                    {item.subItens && item.subItens.length > 0 && <CollapsibleContent>
                                         <ul className="border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 pr-6 py-0.5 group-data-[collapsible=icon]:hidden w-full">
-                                            {item.items.map((subitem) => (
-                                                <li className="group/menu-sub-item w-full" key={subitem.title}>
-                                                    <Button variant="ghost" className="w-full" asChild>
-                                                        <a href={subitem.url}>
-                                                            <span className="mr-auto">{subitem.title}</span>
-                                                        </a>
-                                                    </Button>
+                                            {item.subItens.map((subitem) => (
+                                                <li className="group/menu-sub-item w-full" key={subitem.titulo}>
+                                                    <Link href={subitem.url}>
+                                                        <span className="mr-auto">{subitem.titulo}</span>
+                                                    </Link>
                                                 </li>
                                             ))}
                                         </ul>
                                     </CollapsibleContent>}
                                 </li>
-                            </Collapsible>
+                            </Collapsible> : 
+                            <li className="group/menu-item relative w-full" key={item.titulo}>
+                                <Link href={item.url || "/"} className="w-full">
+                                    <item.icone />
+                                    <span className="mr-auto">{item.titulo}</span>
+                                </Link>
+                            </li>
+                        ))}
+                        {data.menuAdmin.map((item) => (
+                            item.subItens && item.subItens.length > 0 ? <Collapsible asChild className="group/collapsible" key={item.titulo}>
+                                <li className="group/menu-item relative w-full">
+                                    <CollapsibleTrigger className="w-full" asChild>
+                                        <Button variant="ghost" className="w-full border-0">
+                                            <item.icone />
+                                            <span>{item.titulo}</span>
+                                            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                        </Button>
+                                    </CollapsibleTrigger>
+                                    {item.subItens && item.subItens.length > 0 && <CollapsibleContent>
+                                        <ul className="border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 pr-6 py-0.5 group-data-[collapsible=icon]:hidden w-full">
+                                            {item.subItens.map((subitem) => (
+                                                <li className="group/menu-sub-item w-full" key={subitem.titulo}>
+                                                    <Link href={subitem.url}>
+                                                        <span className="mr-auto">{subitem.titulo}</span>
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </CollapsibleContent>}
+                                </li>
+                            </Collapsible> : 
+                            <li className="group/menu-item relative w-full" key={item.titulo}>
+                                <Link href={item.url || "/"} className="w-full">
+                                    <item.icone />
+                                    <span className="mr-auto">{item.titulo}</span>
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </div>

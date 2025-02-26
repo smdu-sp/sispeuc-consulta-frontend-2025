@@ -41,81 +41,9 @@ const menuAdmin: IMenu[] = [
   {
     icone: Users,
     titulo: "Usuários",
-    url: "/usuarios"
+    url: "/usuarios",
   }
 ]
-
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-  ],
-}
 
 export default function Main({ children }: { children?: ReactNode}) {
   return (
@@ -138,12 +66,12 @@ export default function Main({ children }: { children?: ReactNode}) {
             </div>
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4 sm:pt-0 relative">
-            <div className="min-h-100 flex-1 rounded-xl md:min-h-min">
+            <div className="min-h-100 flex-1 rounded-xl md:min-h-min pt-10 sm:pt-0">
               {children}
             </div>
           </div>
         </SidebarInset>
-        <DrawerMenu items={data.navMain} />
+        <DrawerMenu data={{ menuUsuario, menuAdmin }} />
       </SidebarProvider>
     </>
   )
