@@ -60,15 +60,14 @@ export function NavUser() {
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{reduzNome(session.data.usuario.nome)}</span>
-                <span className="truncate text-xs">{session.data.usuario.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "right"}
-            align="end"
+            side={isMobile ? "bottom" : "top"}
+            align="center"
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">

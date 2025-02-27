@@ -1,16 +1,16 @@
 /** @format */
 
 export async function FetchBuscarTudoCadastro(
-	pagina: string,
-	limite: string,
-	busca: string,
-	sistema: string,
 	access_token: string,
+	pagina: number = 1,
+	limite: number = 10,
+	busca: string = '',
+	sistema: string = '',
 ) {
 	const baseURL = process.env.API_URL;
 	try {
 		const cadastros = await fetch(
-			`${baseURL}usuarios/buscar-tudo?pagina=${pagina}&limite=${limite}&busca=${busca}&sistema=${sistema}`,
+			`${baseURL}cadastros/buscar-tudo?pagina=${pagina}&limite=${limite}&busca=${busca}&sistema=${sistema}`,
 			{
 				method: 'GET',
 				headers: {
@@ -19,10 +19,7 @@ export async function FetchBuscarTudoCadastro(
 				},
 			},
 		);
-
 		const data = await cadastros.json();
-		console.log(data);
-
 		if (cadastros.status === 200)
 			return {
 				ok: true,

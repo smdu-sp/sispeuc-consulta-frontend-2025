@@ -1,9 +1,16 @@
 /** @format */
 
-export async function FetchBuscarTudo(access_token: string) {
+export async function FetchBuscarTudo(
+	access_token: string,
+	pagina: number = 1,
+	limite: number = 10,
+	busca: string = '',
+	status: string = '',
+	permissao: string = '',
+) {
 	const baseURL = process.env.API_URL;
 	try {
-		const usuarios = await fetch(`${baseURL}usuarios/buscar-tudo`, {
+		const usuarios = await fetch(`${baseURL}usuarios/buscar-tudo?pagina=${pagina}&limite=${limite}&busca=${busca}&status=${status}&permissao=${permissao}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

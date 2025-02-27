@@ -15,11 +15,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
+  SidebarMenuSubItem
 } from "@/components/ui/sidebar"
-import { IMenu } from "../main"
 import Link from "../link"
+import { IMenu } from "../main"
 
 export function NavMain({
   data
