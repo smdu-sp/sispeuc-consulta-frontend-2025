@@ -3,6 +3,7 @@
 'use server';
 
 import { auth } from '@/lib/auth/auth';
+import { revalidateTag } from 'next/cache';
 
 import { redirect } from 'next/navigation';
 
@@ -22,13 +23,15 @@ export async function AutorizarUsuario(id: string) {
 
 	const dataResponse = await autorizado.json();
 
-	if (autorizado.status === 200)
+	if (autorizado.status === 200) {
+		revalidateTag('usuarios');
 		return {
 			ok: true,
 			error: null,
 			data: dataResponse,
 			status: 200,
 		};
+	}
 	if (!dataResponse)
 		return {
 			ok: false,

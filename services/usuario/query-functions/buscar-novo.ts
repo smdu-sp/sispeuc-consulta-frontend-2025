@@ -9,15 +9,18 @@ export async function FetchBuscarNovo(login: string, access_token: string) {
 			status: 400,
 		};
 
-	const baseURL = process.env.API_URL;
+	// const baseURL = process.env.API_URL;
 	try {
-		const usuarioNovo = await fetch(`${baseURL}usuarios/buscar-novo/${login}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${access_token}`,
+		const usuarioNovo = await fetch(
+			`http://localhost:3000/usuarios/buscar-novo/${login}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${access_token}`,
+				},
 			},
-		});
+		);
 		const data = await usuarioNovo.json();
 		if (usuarioNovo.status === 200)
 			return {
