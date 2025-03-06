@@ -5,6 +5,7 @@
 import { redirect } from 'next/navigation';
 import { ICreateUsuario, IRespostaUsuario } from '../../../types/usuario';
 import { auth } from '@/lib/auth/auth';
+import { revalidateTag } from 'next/cache';
 
 export async function CriarUsuario(
 	data: ICreateUsuario,
@@ -22,13 +23,17 @@ export async function CriarUsuario(
 		body: JSON.stringify(data),
 	});
 	const dataResponse = await response.json();
-	if (response.status === 201)
+
+	if (response.status === 201) {
+		revalidateTag('usuarios');
 		return {
 			ok: true,
 			error: null,
 			data: dataResponse,
 			status: 201,
 		};
+	}
+
 	if (!dataResponse)
 		return {
 			ok: false,
