@@ -75,7 +75,7 @@ export default async function UsuariosSuspense({
 						},
 					]}
 				/>
-				<Suspense fallback={<TableSkeleton />}>
+				<Suspense fallback={<Skeleton className='h-160 w-full rounded-xl' />}>
 					<Usuarios searchParams={searchParams} />
 				</Suspense>
 			</div>
@@ -84,10 +84,6 @@ export default async function UsuariosSuspense({
 			</div>
 		</div>
 	);
-}
-
-export function TableSkeleton() {
-	return <Skeleton className='h-160 w-full rounded-xl' />
 }
 
 async function Usuarios({

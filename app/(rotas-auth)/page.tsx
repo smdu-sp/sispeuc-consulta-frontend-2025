@@ -20,7 +20,10 @@ export default async function UsuariosSuspense({
         <div className=' w-full px-0 md:px-8 relative pb-20 md:pb-14 h-full md:container mx-auto'>
             <h1 className='text-xl md:text-4xl font-bold mt-4'>Consulta ao BI</h1>
             <div className='flex flex-col max-w-sm mx-auto md:max-w-full gap-6 mt-12 w-full mb-6'>
-                <Suspense fallback={<TableSkeleton />}>
+                <Suspense fallback={<>
+                    <Skeleton className='h-14 w-full rounded-xl mb-1' />
+                    <Skeleton className='h-160 w-full rounded-xl' />
+                </>}>
                     <Cadastros searchParams={searchParams} />
                 </Suspense>
             </div>
@@ -29,13 +32,6 @@ export default async function UsuariosSuspense({
             </div>
         </div>
     );
-}
-
-export function TableSkeleton() {
-	return <>
-		<Skeleton className='h-14 w-full rounded-xl mb-1' />
-		<Skeleton className='h-160 w-full rounded-xl' />
-	</>
 }
 
 async function Cadastros({
