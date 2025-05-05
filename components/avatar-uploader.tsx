@@ -45,7 +45,6 @@ export function AvatarUploader({ avatarUrl, id }: AvatarUploaderProps) {
 							avatar: dataResp.avatar,
 						},
 					});
-					console.log('Sessão atualizada:', updateSession); // Para depuração
 				}
 				window.location.reload();
 			}
@@ -54,7 +53,6 @@ export function AvatarUploader({ avatarUrl, id }: AvatarUploaderProps) {
 
 			toast.success('Avatar atualizado com sucesso');
 		} catch (error) {
-			console.log(error);
 			toast.error('Algo deu errado');
 		} finally {
 			setIsValidating(false);

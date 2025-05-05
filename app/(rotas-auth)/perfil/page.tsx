@@ -25,7 +25,6 @@ export default async function Perfil() {
 	const data = await buscarMeuUsuario(session?.access_token);
 	const { data: user, ok, error } = data;
 	if (!ok || !user) {
-		console.log(error);
 		return <div>Usuário não encontrado</div>;
 	}
 

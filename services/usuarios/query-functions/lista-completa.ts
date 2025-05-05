@@ -20,7 +20,6 @@ export async function listaCompleta(access_token: string): Promise<IRespostaUsua
 			status: 200,
 		};
 	} catch (error) {
-		console.log(error);
 		return {
 			ok: false,
 			error: 'Não foi possível buscar a lista de usuários:' + error,

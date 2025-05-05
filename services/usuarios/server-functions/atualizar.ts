@@ -49,7 +49,6 @@ export async function atualizar(
 			};
 		}
 	} catch (error) {
-		console.log(error);
 		return {
 			ok: false,
 			error: 'Erro ao atualizar usuário.',

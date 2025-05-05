@@ -14,8 +14,8 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-	title: 'Template 2025',
-	description: 'Template 2025',
+	title: 'Consulta de SQLs ao BI',
+	description: 'Consulta de SQLs ao BI',
 };
 
 export default function RootLayout({

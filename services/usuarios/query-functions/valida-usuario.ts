@@ -24,7 +24,6 @@ export async function validaUsuario(): Promise<IRespostaUsuario> {
 			status: 200,
 		};
 	} catch (error) {
-		console.log(error);
 		return {
 			ok: false,
 			error: 'Não foi possível validar o usuário:' + error,
