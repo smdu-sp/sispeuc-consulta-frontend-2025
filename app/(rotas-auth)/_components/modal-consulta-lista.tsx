@@ -45,17 +45,27 @@ export default function ModalDados() {
 				const wsname = wb.SheetNames[0];
 				const ws = wb.Sheets[wsname];
 				const linhas = xlsx.utils.sheet_to_json(ws, { header: 1 });
-				const sqls = linhas.slice(1).map((row: any) => row[0].split(';')[0]);
-				if (sqls.length <= 0) return alert("Lista de SQL vazia.");
-				const { ok, data, error, status } = await buscarLista(sqls);
-				if (ok && data && !error && status === 200){
-					setListaSqlsResposta(data as IListaSql[]);
-				} else {
-					toast.error(error || "Não foi possível consultar a lista de SQLs");
-				}
+				await importacao(linhas);
 			}
 		};
 	}
+
+	async function importacao(linhas: unknown[]) {
+		const sqls = linhas.slice(1).map((row: any) => {
+			if (row.length > 0) {
+				if (row[0].toString().includes(';')) return row[0].split(';')[0];
+				return row[0].toString();
+			}
+		});
+		if (sqls.length <= 0) return alert("Lista de SQL vazia.");
+		const { ok, data, error, status } = await buscarLista(sqls);
+		if (ok && data && !error && status === 200){
+			setListaSqlsResposta(data as IListaSql[]);
+		} else {
+			toast.error(error || "Não foi possível consultar a lista de SQLs");
+		}
+	}
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
